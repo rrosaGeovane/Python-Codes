@@ -2,9 +2,6 @@
 
 Welcome to my Python Codes repository! This space is dedicated to sharing my programming projects, scripts, and exercises written in Python.
 
-## About
-This repository contains a collection of Python scripts developed for learning, practice, and project demonstrations. The examples range from basic programming concepts to more advanced algorithms and data processing tasks.
-
 ## Features
 - Well-commented and organized code.
 - Examples covering variables, loops, conditionals, functions, and object-oriented programming.
