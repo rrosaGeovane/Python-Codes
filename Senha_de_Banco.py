@@ -21,4 +21,4 @@ while cont<5:
     print(f"\033[1:31mSenha Errada!\033[m Tente Novamente. Dica:{dica}")
 
     if cont==5:
-        print("\033[1:31mVocÃª excedeu as tentativas. Tente novamente mais tarde\033[m")
+        print("\033[1:31mVocê excedeu as tentativas. Tente novamente mais tarde\033[m")
