@@ -1,0 +1,77 @@
+menu = """
+
+[d] Depositar
+[s] Sacar
+[e] Extrato
+[q] Sair
+
+=> """
+saldo = 0
+limite = 500
+extrato = ""
+numero_saques = 0
+LIMITE_SAQUES = 3
+
+def deposito(saldo, extrato):
+    valor = float(input("Informe o valor do depósito: "))
+
+    if valor > 0:
+        saldo += valor
+        extrato += f"Depósito: R$ {valor:.2f}\n"
+        return saldo, extrato, "Depósito realizado com sucesso!"
+
+    else:
+        return saldo, extrato, "Operação falhou! O valor informado é inválido."
+
+def saque(saldo, numero_saques, extrato, limite, LIMITE_SAQUES):
+
+    valor = float(input("Informe o valor do saque: "))
+
+    if valor > saldo:
+            return saldo, numero_saques, extrato,"Operação falhou! Você não tem saldo suficiente."
+    elif valor > limite:
+            return saldo, numero_saques, extrato,"Operação falhou! O valor do saque excede o limite."
+    elif numero_saques >= LIMITE_SAQUES:
+            return saldo, numero_saques, extrato,"Operação falhou! Número máximo de saques excedido."
+    elif valor > 0:
+        saldo -= valor
+        extrato += f"Saque: R$ {valor:.2f}\n"
+        numero_saques += 1
+        return saldo, numero_saques, extrato, "Saque realizado com Sucesso!"
+    else:
+        return "Operação falhou! O valor informado é inválido."
+
+
+def mostrar_extrato(saldo, extrato):
+    print("\n================ EXTRATO ================")
+    print("Não foram realizadas movimentações." if not extrato else extrato)
+    print(f"\nSaldo: R$ {saldo:.2f}")
+    print("==========================================")
+
+def mensagem_de_erro():
+    return "Operação inválida, por favor selecione novamente a operação desejada."
+
+
+while True:
+
+    opcao = input(menu)
+
+    if opcao == "d":
+        saldo, extrato, mensagem = deposito(saldo, extrato)
+        print(mensagem)
+
+    elif opcao == "s":
+        saldo, numero_saques, extrato, mensagem = saque(
+            saldo, numero_saques, extrato, limite, LIMITE_SAQUES
+        )
+        print(mensagem)
+
+    elif opcao == "e":
+        mostrar_extrato(saldo, extrato)
+
+    elif opcao == "q":
+        break
+
+    else:
+        mensagem = mensagem_de_erro()
+        print(mensagem)
