@@ -1,18 +1,24 @@
 import random
 
-def password_generator(characters):
-    char_list = list(characters)
-    random.shuffle(char_list)
-
-    size = int(input("Enter password length (MAXIMUM 67 CHARACTERS): "))
-
-    if size < 5:
-        print("Password too short! Minimum 5 characters.")
+def password_generator(size):
+    
+    total = "!@#$%&+-*/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    num = "1234567890"
+    symbol = "!@#$%&+-*/"
+    
+    if size < 8:
+        return "Password too short! Minimum 8 characters."
     else:
-        for i in range(size):
-            print(char_list[i], end="")
-
-
-options = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%&"
-
-password_generator(options)
+        p = [
+            random.choice(upper),
+            random.choice(num),
+            random.choice(symbol),
+            ]
+        p += random.choices(total, k=size-3)
+        random.shuffle(p)
+        password = "".join(p)
+        return password
+    
+size = int(input("Enter password length: "))
+print(password_generator(size))
